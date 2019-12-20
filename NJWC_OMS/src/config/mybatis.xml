@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- 别名    以类名作为全限定名  -->
+	 <settings>
+  		<setting name="logImpl" value="STDOUT_LOGGING" />    <!-- 指定 MyBatis 所用日志的具体实现，未指定时将自动查找。 -->
+     </settings>
+	<typeAliases>
+		<package name="njwc.oms.po"/>  <!-- 让mybatis知道在哪个包下搜索JavaBean -->
+	</typeAliases>
+ 
+</configuration>

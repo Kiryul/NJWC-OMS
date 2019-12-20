@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>user login</title>
+
+<script type="text/javascript">
+
+     function login()
+    {
+    	 if (window.XMLHttpRequest) 
+   	  {// code for IE7+, Firefox, Chrome, Opera, Safari
+   	     xmlhttp=new XMLHttpRequest(); 
+   	  } 
+   	else {// code for IE6, IE5 
+   	   xmlhttp=new ActiveXObject("Microsoft.XMLHTTP"); 
+   	} 
+    	 account=document.getElementById("account").value;
+    	 password=document.getElementById("password").value;
+    	 xmlhttp.open("POST","login0.do",true);
+    	 
+    	 xmlhttp.onreadystatechange=function()
+    	 {
+    		 if (xmlhttp.readyState==4 && xmlhttp.status==200) 
+    	     { 
+    			json=eval("("+xmlhttp.responseText+")");
+    			alert(JSON.stringify(json));
+    			if(json.message=="200")
+    				window.location.href="welcome.html?"+json.user.account;
+    			else
+    			  {
+    				alert(json.message);
+    				document.getElementById("password").value="";
+    			  }
+    			
+    	     }
+    	 }
+    	 xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    	 xmlhttp.send("account="+account+"&password="+password);
+	}
+
+</script>
+</head>
+<body>
+<h1> 请登录！</h1>
+<hr>
+<div align="center">
+    账号：<input type="text" id="account"/><br>
+    密码：<input type="password" id="password"/><br>
+    <button onclick="login()">登录</button>
+</div>
+
+</body>
+</html>

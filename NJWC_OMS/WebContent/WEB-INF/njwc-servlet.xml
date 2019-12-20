@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd   
+         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd    
+            http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd    
+            http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd"
+            default-autowire="byName">
+            
+           <!--  扫描注解包： 通过该语句可以扫描njwc.oms包及子包下所有的类，加到容器中管理 -->
+             <context:component-scan base-package="njwc.oms"/>
+            <!--  开启注解 -->
+             <mvc:annotation-driven />      
+             
+             
+<!-- //？？？ -->
+ 	<!-- 从请求和响应读取/编写字符串 stringHttpMessage-->
+	<bean id="stringHttpMessage" class="org.springframework.http.converter.StringHttpMessageConverter">
+		<property name="supportedMediaTypes">
+			<list>
+				<value>text/plain;charset=UTF-8</value>
+			</list>
+		</property>
+	</bean>
+	
+	
+	<!-- 用于将对象转化为JSON -->   
+	<bean id="jsonConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"></bean>
+	
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<ref bean="stringHttpMessage"/>
+				<ref bean="jsonConverter"/>
+			</list>
+		</property>	
+	</bean>
+
+<!--   导包 ：将beans.xml导入本配置  -->
+ <import resource="classpath:config/beans.xml"/>
+             
+</beans>
