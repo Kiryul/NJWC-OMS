@@ -3,7 +3,6 @@ package njwc.oms.test;
 import javax.annotation.Resource;
 
 import org.junit.Test;
-import org.springframework.stereotype.Service;
 
 import njwc.oms.mapper.ServiceMapper;
 import njwc.oms.po.T_user;

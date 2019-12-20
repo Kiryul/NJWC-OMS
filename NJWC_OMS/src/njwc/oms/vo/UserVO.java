@@ -5,6 +5,7 @@ import njwc.oms.po.T_user;
 public class UserVO {
 	private T_user user;
 	private String message;
+	
 	public T_user getUser() {
 		return user;
 	}

@@ -1,11 +1,14 @@
 package njwc.oms.po;
 
+import java.sql.Timestamp;
+
 public class T_order {
 	private int id;
 	private String order_number;
-	private String create_time;
+	private Timestamp create_time;
 	private int status;
 	private int user_id;
+	
 	public int getId() {
 		return id;
 	}
@@ -18,10 +21,10 @@ public class T_order {
 	public void setOrder_number(String order_number) {
 		this.order_number = order_number;
 	}
-	public String getCreate_time() {
+	public Timestamp getCreate_time() {
 		return create_time;
 	}
-	public void setCreate_time(String create_time) {
+	public void setCreate_time(Timestamp create_time) {
 		this.create_time = create_time;
 	}
 	public int getStatus() {

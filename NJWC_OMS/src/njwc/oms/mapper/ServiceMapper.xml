@@ -11,11 +11,74 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 <!-- 	商户登录 -->
-	<select id="login1" parameterType="Seller" resultType="Seller">
+	<select id="login1" parameterType="T_seller" resultType="T_seller">
 		select * from t_seller where account=#{account} 
 	</select>
 
-
-
+<!-- 查询所有商品 -->
+    <select id="queryProducts" resultType="T_product">
+     select * from t_product order by id desc
+    </select>
+    
+    <!-- 插入新订单 -->
+    <insert id="insertOrder" parameterType="T_order">
+    insert into t_order (order_number,order_time,status,user_id)
+    values
+    (#{order_number},#{order_time},#{status},#{user_id})
+    </insert>
+    
+    <!-- 插入条目 -->
+    <insert id="insertEntry" parameterType="T_entry">
+    insert into t_entry (product_id,product_price,product_num,order_number)
+    values
+    (#{product_ID},#{product_price},#{product_num},#{order_number})
+    </insert>
+    
+    <!-- 查询我的所有订单 -->
+    <select id="queryMyOrders" parameterType="Integer" resultType="T_order">
+    select * from t_order where user_id=#{user_id}
+    </select>
+    
+    <!-- 改变订单状态 -->
+    <update id="changeOrderStatus" >
+    update t_order set status=#{status} where order_number=#{order_number}
+    </update>
+    
+    <!-- 删除订单 -->
+    <delete id="deleteOrder" parameterType="String">
+    delete from t_order where order_number=#{order_number}
+    </delete>
+    
+    <!-- 根据商家id查询产品 -->
+    <select id="queryMyProducts" parameterType="Integer" resultType="t_product">
+    select * from t_product where seller_id=#{seller_id}
+    </select>
+    
+    <!-- 删除商品 -->
+    <delete id="deleteProducts" parameterType="Integer">
+    delete from t_product where product_id=#{product_id}
+    </delete>
+    
+    <!-- 插入商品 -->
+    <insert id="insertProduct" parameterType="T_product">
+    insert into t_product (product_id,name,price,seller_id)
+    values
+    (#{product_id},#{name},#{price},#{seller_id})
+    </insert>
+    
+    <!-- 更新商品信息 -->
+    <update id="updateProduct" >
+    update t_product set name=#{name} , price=#{price} where product_id=#{product_id}
+    </update>
+    
+    <!-- 查询商品id查卖出的条目 -->
+    <select id="queryMyEntry" parameterType="Integer" resultType="T_entry">
+    select * from t_entry where product_id=#{product_id}
+    </select>
+    
+    <!-- 根据商家id查询产品id -->
+    <select id="queryProduct_id" parameterType="Integer" resultType="Integer">
+    select product_id from t_product where seller_id=#{seller_id}
+    </select>
 
 </mapper>
