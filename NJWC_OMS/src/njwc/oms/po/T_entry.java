@@ -3,7 +3,7 @@ package njwc.oms.po;
 public class T_entry {
 	private int id;
 	private int product_id;
-	private float product_price;
+	private double product_price;
 	private int product_num;
 	private String order_number;
 	
@@ -19,10 +19,10 @@ public class T_entry {
 	public void setProduct_id(int product_id) {
 		this.product_id = product_id;
 	}
-	public float getProduct_price() {
+	public double getProduct_price() {
 		return product_price;
 	}
-	public void setProduct_price(float product_price) {
+	public void setProduct_price(double product_price) {
 		this.product_price = product_price;
 	}
 	public int getProduct_num() {

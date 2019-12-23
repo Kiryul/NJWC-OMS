@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.ibatis.annotations.Param;
+
 import njwc.oms.po.T_entry;
 import njwc.oms.po.T_order;
 import njwc.oms.po.T_product;
@@ -32,7 +34,7 @@ public interface ServiceMapper {
 	public abstract List<Object> queryMyOrders(Integer user_id);
 	
 	//改变订单状态
-	public abstract boolean changeOrderStatus(String order_number, Integer status);
+	public abstract boolean changeOrderStatus(@Param("order_number")String order_number, @Param("status")Integer status);
 	
 	//删除订单
 	public abstract boolean deleteOrder(String order_number);
@@ -49,7 +51,7 @@ public interface ServiceMapper {
     public abstract boolean insertProduct(T_product product);
     
     //更新商品信息
-    public abstract boolean updateProduct(Integer product_id,String name,float price);
+    public abstract boolean updateProduct(@Param("product_id")Integer product_id,@Param("name")String name,@Param("price")double price);
     
     //根据商品id查卖出的条目
 	public abstract List<Object> queryMyEntry(Integer product_id);

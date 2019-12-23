@@ -88,7 +88,7 @@ public class ServiceImpl implements IService
 
 	//创建订单
 	@Override
-	public boolean createOrder(Integer user_id, Integer product_id, float product_price, Integer product_num) {
+	public boolean createOrder(Integer user_id, Integer product_id, double product_price, Integer product_num) {
 		// TODO Auto-generated method stub
 		String order_number = UUID.randomUUID().toString().replaceAll("-", "");
 		Timestamp create_time= new Timestamp(System.currentTimeMillis());//获取系统当前时间
@@ -153,7 +153,7 @@ public class ServiceImpl implements IService
 
 	//插入一件商品
 	@Override
-	public boolean insertProduct(Integer product_id, String name, float price, Integer seller_id) {
+	public boolean insertProduct(Integer product_id, String name, double price, Integer seller_id) {
 		// TODO Auto-generated method stub
 		T_product product = new T_product();
 		product.setProduct_id(product_id);
@@ -164,7 +164,7 @@ public class ServiceImpl implements IService
 	}
 	
 	//更改商品信息
-	public boolean updateProduct(Integer product_id,String name,float price) {
+	public boolean updateProduct(Integer product_id,String name,double price) {
 		// TODO Auto-generated method stub
 		return serviceMapper.updateProduct(product_id, name, price);
 	}

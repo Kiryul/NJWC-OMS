@@ -34,7 +34,7 @@ public interface IService {
 	 * @param user_id,product_id,product_price,product_num
 	 * @return boolean
 	 */
-	public abstract boolean createOrder(Integer user_id,Integer product_id,float product_price,Integer produce_num);
+	public abstract boolean createOrder(Integer user_id,Integer product_id,double product_price,Integer product_num);
 	
 	/*
 	 * //查询我的所有订单
@@ -80,7 +80,7 @@ public interface IService {
 	 * @param seller_id
 	 * @return
 	 */
-	public abstract boolean insertProduct(Integer product_id,String name,float price,Integer seller_id);
+	public abstract boolean insertProduct(Integer product_id,String name,double price,Integer seller_id);
 
 	/**
 	 *  //更改商品信息
@@ -89,12 +89,12 @@ public interface IService {
 	 * @param price
 	 * @return
 	 */
-	public abstract boolean updateProduct(Integer product_id,String name,float price);
+	public abstract boolean updateProduct(Integer product_id,String name,double price);
 	
 	/**
 	 *  //查看我的卖出记录
 	 * @param product_id
 	 * @return
 	 */
-	public abstract Map<Object,Object> queryMyEntry(Integer product_id);
+	public abstract Map<Object,Object> queryMyEntry(Integer seller_id);
 }

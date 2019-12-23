@@ -22,16 +22,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     
     <!-- 插入新订单 -->
     <insert id="insertOrder" parameterType="T_order">
-    insert into t_order (order_number,order_time,status,user_id)
+    insert into t_order (order_number,create_time,status,user_id)
     values
-    (#{order_number},#{order_time},#{status},#{user_id})
+    (#{order_number},#{create_time},#{status},#{user_id})
     </insert>
     
     <!-- 插入条目 -->
     <insert id="insertEntry" parameterType="T_entry">
     insert into t_entry (product_id,product_price,product_num,order_number)
     values
-    (#{product_ID},#{product_price},#{product_num},#{order_number})
+    (#{product_id},#{product_price},#{product_num},#{order_number})
     </insert>
     
     <!-- 查询我的所有订单 -->

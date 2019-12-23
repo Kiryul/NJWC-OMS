@@ -4,7 +4,7 @@ public class T_product {
 	private int id;
 	private int product_id;
 	private String name;
-	private float price;
+	private double price;
 	private int seller_id;
 	public int getId() {
 		return id;
@@ -24,10 +24,10 @@ public class T_product {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public float getPrice() {
+	public double getPrice() {
 		return price;
 	}
-	public void setPrice(float price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 	public int getSeller_id() {
