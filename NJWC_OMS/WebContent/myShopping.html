@@ -27,7 +27,7 @@ function myOrder()
 		 if (xmlhttp.readyState==4 && xmlhttp.status==200) 
 	     { 
 			json=eval("("+xmlhttp.responseText+")");
-			alert(JSON.stringify(json));
+			//alert(JSON.stringify(json));
 			// alert(json[0]);
 			// alert(json[0].order.order_number);
       // alert(json[0].entry.length);
@@ -84,7 +84,7 @@ function payment(order_number)
 				if(res=="true")
 				{
 					alert("支付成功！");
-					//myOrder();
+					myOrder();
 				}
 				else
 					{

@@ -70,11 +70,11 @@ function buyProduct(product_id,product_price)
 			 if (xmlhttp.readyState==4 && xmlhttp.status==200) 
 		     { 
 				res=xmlhttp.responseText;
-				alert(res);
+			//	alert(res);
 				if(res=="true")
 				{
 					alert("下单成功！");
-				//	allProducts();
+					allProducts();
 				}
 				else
 					{

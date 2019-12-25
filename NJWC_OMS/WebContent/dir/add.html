@@ -33,11 +33,12 @@ function add()
 		 if (xmlhttp.readyState==4 && xmlhttp.status==200) 
 	     { 
 				res=xmlhttp.responseText;
-				alert(res);
+				//alert(res);
 				if(res=="true")
 				{
 					alert("提交成功！");
-					self.location = document.referrer;
+					add();
+					//self.location = document.referrer;
 					//window.location.href="../index1.html";
 				}
 				else

@@ -27,7 +27,7 @@ function myOrder()
 		 if (xmlhttp.readyState==4 && xmlhttp.status==200) 
 	     { 
 			json=eval("("+xmlhttp.responseText+")");
-			alert(JSON.stringify(json));
+			//alert(JSON.stringify(json));
 			// alert(json[0]);
 			// alert(json[0].order.order_number);
       // alert(json[0].entry.length);
@@ -56,7 +56,7 @@ function display(json)
      content+="<td>"+json[j].entry[i].product_price+"</td>";
      content+="<td>"+json[j].entry[i].product_num+"</td>";
      content+="<td>"+json[j].entry[i].product_num*json[j].entry[i].product_price+"</td>";
-     content+="<td><button onclick='deleteOrder(\""+json[j].entry[i].order_number+"\)'>删除</button></td></tr>";
+     content+="<td><button onclick='deleteOrder(\""+json[j].entry[i].order_number+"\")'>删除</button></td></tr>";
      content+="</table><br>";
 		}
 
