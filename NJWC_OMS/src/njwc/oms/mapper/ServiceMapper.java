@@ -31,7 +31,10 @@ public interface ServiceMapper {
 	public abstract boolean insertEntry(T_entry entry);
 	
 	//查询我的订单
-	public abstract List<Object> queryMyOrders(Integer user_id);
+	public abstract List<Object> queryMyOrders(@Param("user_id")Integer user_id,@Param("status")Integer status);
+	
+	//根据订单号查条目
+	public abstract List<Object> queryEntry(String order_number);
 	
 	//改变订单状态
 	public abstract boolean changeOrderStatus(@Param("order_number")String order_number, @Param("status")Integer status);

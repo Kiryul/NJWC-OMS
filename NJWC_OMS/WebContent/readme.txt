@@ -1,0 +1,1 @@
+http://www.pintuer.com/javascript.html#checks

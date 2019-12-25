@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import njwc.oms.po.T_user;
 import njwc.oms.service.IService;
 import njwc.oms.vo.UserVO;
 
@@ -39,19 +40,19 @@ public class UserController {
 	//创建订单
 	@RequestMapping("createOrder.do")
 	@ResponseBody
-	public boolean createOrder(Integer product_id,float product_price,Integer produce_num,HttpSession session)
+	public boolean createOrder(Integer product_id,double product_price,Integer product_num,HttpSession session)
 	{
-		Integer user_id=(Integer)session.getAttribute("user");
-		return iService.createOrder(user_id, product_id, product_price, produce_num);
+		T_user user=(T_user) session.getAttribute("user");
+		return iService.createOrder(user.getId(), product_id, product_price, product_num);
 	}
 
 	//查询我的所有订单
 	@RequestMapping("queryMyOrders.do")
 	@ResponseBody
-	public List<Object> queryMyOrders(HttpSession session)
+	public List<Object> queryMyOrders(Integer status,HttpSession session)
 	{
-		Integer user_id=(Integer)session.getAttribute("user");
-		return iService.queryMyOrders(user_id);
+		T_user user=(T_user) session.getAttribute("user");
+		return iService.queryMyOrders(user.getId(),status);
 	}
 	
 	//更新订单状态

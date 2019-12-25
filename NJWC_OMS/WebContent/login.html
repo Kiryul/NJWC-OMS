@@ -1,9 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-cn">
 <head>
-<meta charset="UTF-8">
-<title>user login</title>
-
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="renderer" content="webkit">
+    <title>登录</title>  
+    <link rel="stylesheet" href="css/pintuer.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <script src="js/jquery.js"></script>
+    <script src="js/pintuer.js"></script>
 <script type="text/javascript">
 
      function login()
@@ -14,19 +20,29 @@
    	  } 
    	else {// code for IE6, IE5 
    	   xmlhttp=new ActiveXObject("Microsoft.XMLHTTP"); 
-   	} 
+		 } 
+			 radio=document.getElementsByName("sign");
+			 //alert(radio.length);
+			 for(var i=0;i<radio.length;i++)
+			 {
+				 if(radio[i].checked==true) sign=radio[i].value;
+			 }
+
+			 //alert(sign);
     	 account=document.getElementById("account").value;
-    	 password=document.getElementById("password").value;
-    	 xmlhttp.open("POST","login0.do",true);
-    	 
-    	 xmlhttp.onreadystatechange=function()
+			 password=document.getElementById("password").value;
+			 if(sign==0)
+			 {
+			 xmlhttp.open("POST","login0.do",true);
+			 
+			     	 xmlhttp.onreadystatechange=function()
     	 {
     		 if (xmlhttp.readyState==4 && xmlhttp.status==200) 
     	     { 
     			json=eval("("+xmlhttp.responseText+")");
     			alert(JSON.stringify(json));
     			if(json.message=="200")
-    				window.location.href="welcome.html?"+json.user.account;
+    				window.location.href="index0.html";
     			else
     			  {
     				alert(json.message);
@@ -35,6 +51,26 @@
     			
     	     }
     	 }
+			 }else{
+				xmlhttp.open("POST","login1.do",true);
+
+				    	 xmlhttp.onreadystatechange=function()
+    	 {
+    		 if (xmlhttp.readyState==4 && xmlhttp.status==200) 
+    	     { 
+    			json=eval("("+xmlhttp.responseText+")");
+    			alert(JSON.stringify(json));
+    			if(json.message=="200")
+    				window.location.href="index1.html";
+    			else
+    			  {
+    				alert(json.message);
+    				document.getElementById("password").value="";
+    			  }
+    			
+    	     }
+    	 }
+			 }
     	 xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     	 xmlhttp.send("account="+account+"&password="+password);
 	}
@@ -42,12 +78,41 @@
 </script>
 </head>
 <body>
-<h1> 请登录！</h1>
-<hr>
-<div align="center">
-    账号：<input type="text" id="account"/><br>
-    密码：<input type="password" id="password"/><br>
-    <button onclick="login()">登录</button>
+<div class="bg"></div>
+<div class="container">
+    <div class="line bouncein">
+        <div class="xs6 xm4 xs3-move xm4-move">
+            <div style="height:150px;"></div>
+            <div class="media media-y margin-big-bottom">           
+            </div>         
+            <form>
+            <div class="panel loginbox">
+                <div class="text-center margin-big padding-big-top"><h1>南京文创订单管理系统</h1></div>
+                <div class="panel-body" style="padding:30px; padding-bottom:10px; padding-top:10px;">
+                    <div class="form-group">
+                        <div class="field field-icon-right">
+                            <input id="account" type="text" class="input input-big" placeholder="登录账号" data-validate="required:请填写账号" />
+                            <span class="icon icon-user margin-small"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="field field-icon-right">
+                            <input id="password" type="password" class="input input-big" placeholder="登录密码" data-validate="required:请填写密码" />
+                            <span class="icon icon-key margin-small"></span>
+                        </div>
+                    </div>
+                    <div align="center">
+   						<input type="radio" name="sign" value="0" checked/>客户登陆
+   						<input type="radio" name="sign" value="1"/>商户登陆
+                    </div>
+                </div>
+                <div style="padding:30px;">
+                	<input type="submit" class="button button-block bg-main text-big input-big" value="登录"  onclick="login()">
+                </div>
+            </div>
+            </form>          
+        </div>
+    </div>
 </div>
 
 </body>

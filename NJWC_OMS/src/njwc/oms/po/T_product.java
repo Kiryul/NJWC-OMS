@@ -4,6 +4,7 @@ public class T_product {
 	private int id;
 	private int product_id;
 	private String name;
+	private int type;
 	private double price;
 	private int seller_id;
 	public int getId() {
@@ -24,6 +25,12 @@ public class T_product {
 	public void setName(String name) {
 		this.name = name;
 	}
+	public int getType() {
+		return type;
+	}
+	public void setType(int type) {
+		this.type = type;
+	}
 	public double getPrice() {
 		return price;
 	}
@@ -38,9 +45,10 @@ public class T_product {
 	}
 	@Override
 	public String toString() {
-		return "Product [id=" + id + ", product_id=" + product_id + ", name=" + name + ", price=" + price
-				+ ", seller_id=" + seller_id + "]";
+		return "T_product [id=" + id + ", product_id=" + product_id + ", name=" + name + ", type=" + type + ", price="
+				+ price + ", seller_id=" + seller_id + "]";
 	}
+
 	
 	
 	

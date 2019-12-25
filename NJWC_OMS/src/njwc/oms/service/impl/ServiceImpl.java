@@ -17,6 +17,7 @@ import njwc.oms.po.T_product;
 import njwc.oms.po.T_seller;
 import njwc.oms.po.T_user;
 import njwc.oms.service.IService;
+import njwc.oms.vo.OrderVO;
 import njwc.oms.vo.SellerVO;
 import njwc.oms.vo.UserVO;
 import njwc.oms.mapper.*;
@@ -114,9 +115,20 @@ public class ServiceImpl implements IService
 
 	//查询我的订单
 	@Override
-	public List<Object> queryMyOrders(Integer user_id) {
+	public List<Object> queryMyOrders(Integer user_id,Integer status) {
 		// TODO Auto-generated method stub
-		return serviceMapper.queryMyOrders(user_id);
+		List<Object> list=new ArrayList<Object>();
+		List<Object> result=new ArrayList<Object>();
+		list=serviceMapper.queryMyOrders(user_id, status);
+		for (Object object : list) {
+			T_order order=(T_order) object;
+			OrderVO ordervo=new OrderVO();
+			ordervo.setOrder(order);
+			List<Object> entry=serviceMapper.queryEntry(order.getOrder_number());
+			ordervo.setEntry(entry);
+			result.add(ordervo);
+		}
+		return result;
 	}
 
 	//改变订单状态
@@ -153,11 +165,12 @@ public class ServiceImpl implements IService
 
 	//插入一件商品
 	@Override
-	public boolean insertProduct(Integer product_id, String name, double price, Integer seller_id) {
+	public boolean insertProduct(Integer product_id, String name,Integer type, double price, Integer seller_id) {
 		// TODO Auto-generated method stub
 		T_product product = new T_product();
 		product.setProduct_id(product_id);
 		product.setName(name);
+		product.setType(type);
 		product.setPrice(price);
 		product.setSeller_id(seller_id);
 		return serviceMapper.insertProduct(product);

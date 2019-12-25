@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="renderer" content="webkit">
+<title></title>
+<link rel="stylesheet" href="css/pintuer.css">
+<link rel="stylesheet" href="css/admin.css">
+<script src="js/jquery.js"></script>
+<script src="js/pintuer.js"></script>
+<script type="text/javascript">
+function myOrder()
+{	
+	 if (window.XMLHttpRequest) 
+	  {// code for IE7+, Firefox, Chrome, Opera, Safari
+	     xmlhttp=new XMLHttpRequest(); 
+	  } 
+	else {// code for IE6, IE5 
+	   xmlhttp=new ActiveXObject("Microsoft.XMLHTTP"); 
+	  }
+	 xmlhttp.open("get", "queryMyOrders.do?status="+1, true);
+	 xmlhttp.onreadystatechange=function() 
+	 {    
+		 //alert(xmlhttp.readyState)
+		 if (xmlhttp.readyState==4 && xmlhttp.status==200) 
+	     { 
+			json=eval("("+xmlhttp.responseText+")");
+			alert(JSON.stringify(json));
+			// alert(json[0]);
+			// alert(json[0].order.order_number);
+      // alert(json[0].entry.length);
+      // alert(json[0].entry[0].order_number);
+			document.getElementById("viewmyorder").innerHTML=display(json);
+	     } 
+	 }
+	 xmlhttp.send();  
+}
+
+
+function display(json)
+{
+  content="";
+	for(var j=0;j<json.length;j++)
+	{
+    content+="订单号："+json[j].order.order_number+"<br>";
+    content+="创建时间："+json[j].order.create_time+"<br>";
+    content+="状态：已完成";
+		for(var i=0;i<json[j].entry.length;i++)
+		{
+     content+="<table align='center' border='1'>";
+     content+="<tr><th>id</th><th>商品号</th><th>商品价格</th><th>购买数量</th><th>总价</th><th>操作</th></tr>";
+     content+="<tr><td>"+json[j].entry[i].id+"</td>";
+ 	   content+="<td>"+json[j].entry[i].product_id+"</td>";
+     content+="<td>"+json[j].entry[i].product_price+"</td>";
+     content+="<td>"+json[j].entry[i].product_num+"</td>";
+     content+="<td>"+json[j].entry[i].product_num*json[j].entry[i].product_price+"</td>";
+     content+="<td><button onclick='deleteOrder(\""+json[j].entry[i].order_number+"\)'>删除</button></td></tr>";
+     content+="</table><br>";
+		}
+
+	}
+
+    return content;
+}
+function deleteOrder(order_number)
+{
+	   if(!confirm("确定删除该订单")) return;
+		 if (window.XMLHttpRequest) 
+		  {// code for IE7+, Firefox, Chrome, Opera, Safari
+		     xmlhttp=new XMLHttpRequest(); 
+		  } 
+		else {// code for IE6, IE5 
+		   xmlhttp=new ActiveXObject("Microsoft.XMLHTTP"); 
+		}
+		xmlhttp.open("get", "deleteOrder.do?order_number="+order_number, true);
+		 xmlhttp.onreadystatechange=function() 
+		 {    
+			 //alert(xmlhttp.readyState)
+			 if (xmlhttp.readyState==4 && xmlhttp.status==200) 
+		     { 
+				res=xmlhttp.responseText;
+				if(res=="true")
+				{
+					alert("删除成功！");
+					myOrder();
+				}
+				else
+					{
+					alert("操作失败！");
+					}
+		     } 
+		 } 
+	  xmlhttp.send();
+}
+</script>
+</head>
+<body onload="myOrder()">
+<!-- <form method="post" action="" id="listform"> -->
+  <div class="panel admin-panel">
+    <div class="panel-head"><strong class="icon-reorder"> 产品列表</strong> <a href="" style="float:right; display:none;">添加字段</a></div>
+    <div id="viewmyorder"></div>
+    <!-- <table class="table table-hover text-center">
+      <tr>
+        <th width="10%">商品ID</th>
+        <th>商品名</th>
+        <th>单价</th>
+        <th>商品数量</th>
+        <th>商家ID</th>
+        <th>总价格</th>
+        <th>订单状态</th>
+        <th width="310">操作</th>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td><font color="#00CC99">我的回忆</font></td>
+          <td>和她的那些年</td>
+          <td>和她的那些年</td>
+          <td>1</td>
+          <td>1</td>
+          <td>未发货</td>
+          <td><div class="button-group"> <a class="button border-main" onclick="take()">确认收货</a> </div></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><font color="#00CC99">我的同事</font></td>
+          <td>一群不要命的人</td>
+          <td>和她的那些年</td>
+          <td>1</td>
+          <td>1</td>
+          <td>未发货</td>
+          <td><div class="button-group"> <a class="button border-main" onclick="take()">确认收货</a> </div></td>
+        </tr>
+         <tr>
+          <td>3</td>
+          <td><font color="#00CC99">我的死党</font></td>
+          <td>再牛逼的现在也比不上逗逼的以前</td>
+          <td>和她的那些年</td>
+          <td>1</td>
+          <td>1</td>
+          <td>未发货</td>
+          <td><div class="button-group"> <a class="button border-main" onclick="take()">确认收货</a> </div></td>
+        </tr>
+         <tr>
+          <td>4</td>
+          <td><font color="#00CC99">工作文档</font></td>
+          <td>我是IT民工</td>
+          <td>和她的那些年</td>
+          <td>1</td>
+          <td>1</td>
+          <td>未发货</td>
+          <td><div class="button-group"> <a class="button border-main" onclick="take()">确认收货</a> </div></td>
+        </tr>
+      <tr>
+        <td colspan="8"><div class="pagelist"> <a href="">上一页</a> <span class="current">1</span><a href="">2</a><a href="">3</a><a href="">下一页</a><a href="">尾页</a> </div></td>
+      </tr>
+    </table> -->
+  </div>
+<!-- </form> -->
+</body>
+</html>

@@ -18,7 +18,7 @@ public class ServiceTest extends BaseTest
 	@Resource
 	private IService iService;
 	
-	//µÇÂ¼²âÊÔ
+//	//µÇÂ¼²âÊÔ
 //	@Test
 //	public void mapperLogin0() throws Exception
 //	{
@@ -43,9 +43,9 @@ public class ServiceTest extends BaseTest
 //	public void createOrder() throws Exception
 //	{
 //		Integer user_id=1;
-//		Integer product_id=001;
-//		float product_price=(float)52.0;
-//		Integer product_num=2;
+//		Integer product_id=4;
+//		double product_price=33;
+//		Integer product_num=10;
 //		System.out.println(iService.createOrder(user_id, product_id, product_price, product_num));
 //	}
 
@@ -61,7 +61,7 @@ public class ServiceTest extends BaseTest
 //	@Test
 //	public void changeOrderStatus() throws Exception
 //	{
-//		String order_number="b644777671f3489cb34047bd6fe2796c";
+//		String order_number="45559ce2aa5b43ebbebbc63fe32521ff";
 //		Integer status=1;
 //		System.out.println(iService.changeOrderStatus(order_number, status));
 //	}

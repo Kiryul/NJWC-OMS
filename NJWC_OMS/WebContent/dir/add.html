@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="renderer" content="webkit">
+<title></title>
+<link rel="stylesheet" href="../css/pintuer.css">
+<link rel="stylesheet" href="../css/admin.css">
+<script src="../js/jquery.js"></script>
+<script src="../js/pintuer.js"></script>
+<script type="text/javascript">
+
+function add()
+{
+	 if (window.XMLHttpRequest) 
+  	  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  	     xmlhttp=new XMLHttpRequest(); 
+  	  } 
+  	else {// code for IE6, IE5 
+  	   xmlhttp=new ActiveXObject("Microsoft.XMLHTTP"); 
+  	}
+	 product_id=document.getElementById("product_id").value;
+	 name=document.getElementById("name").value;
+	 type=1;
+	 price=document.getElementById("price").value;
+
+	 xmlhttp.open("POST","../insertProduct.do",true);
+	
+	 xmlhttp.onreadystatechange=function()
+	 {
+		 if (xmlhttp.readyState==4 && xmlhttp.status==200) 
+	     { 
+				res=xmlhttp.responseText;
+				alert(res);
+				if(res=="true")
+				{
+					alert("提交成功！");
+					self.location = document.referrer;
+					//window.location.href="../index1.html";
+				}
+				else
+					{
+					alert("操作失败！");
+					}
+			  }
+			
+	     }
+	 xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	 xmlhttp.send("product_id="+product_id+"&name="+name+"&type="+type+"&price="+price);
+} 
+
+</script>
+</head>
+<body>
+<div class="panel admin-panel margin-top">
+  <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>添加内容</strong></div>
+  <div class="body-content">
+    <form method="post" class="form-x" action="">
+      <table class="table table-hover text-center">
+      	<tr>
+        <th width="10%">商品ID</th>
+        <th>商品名</th>
+        <th width="310">单价</th>
+        </tr>
+        <tr>
+        <th><input type="text" id="product_id"></th>
+        <th><input type="text" id="name"></th>
+        <th><input type="text" id="price"></th>
+        </tr>      
+       </table>
+       <div class="field">
+            <button class="button bg-main icon-check-square-o" type="submit" onclick="add()">添加</button>
+       </div>
+    </form>
+  </div>
+</div>
+
+</body>
+</html>

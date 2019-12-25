@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="renderer" content="webkit">
+<title></title>
+<link rel="stylesheet" href="css/pintuer.css">
+<link rel="stylesheet" href="css/admin.css">
+<script src="js/jquery.js"></script>
+<script src="js/pintuer.js"></script>
+</head>
+<body>
+<form method="post" action="" id="listform">
+  <div class="panel admin-panel">
+    <div class="panel-head"><strong class="icon-reorder"> 产品列表</strong> </div>
+    <div class="padding border-bottom">
+      <ul class="search" style="padding-left:10px;">
+        <li>
+          <input type="text" placeholder="请输入搜索关键字" name="keywords" class="input" style="width:250px; line-height:17px;display:inline-block" />
+          <a href="javascript:void(0)" class="button border-main icon-search" onclick="changesearch()" > 搜索</a></li>
+      </ul>
+    </div>
+    <table class="table table-hover text-center">
+      <tr>
+        <th width="10%">商品ID</th>
+        <th>商品名</th>
+        <th>单价</th>
+        <th>商品数量</th>
+        <th>商家ID</th>
+        <th>总价格</th>
+        <th width="310">操作</th>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td><font color="#00CC99">我的回忆</font></td>
+          <td>和她的那些年</td>
+          <td>和她的那些年</td>
+          <td>1</td>
+          <td>1</td>
+          <td><div class="button-group"> <a class="button border-main" onclick="delete3()">删除</a><a class="button border-main" onclick="pay()">付款</a> </div></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><font color="#00CC99">我的同事</font></td>
+          <td>一群不要命的人</td>
+          <td>和她的那些年</td>
+          <td>1</td>
+          <td>1</td>
+          <td><div class="button-group"> <a class="button border-main" onclick="delete2()">删除</a><a class="button border-main" onclick="pay()">付款</a> </div></td>
+        </tr>
+         <tr>
+          <td>3</td>
+          <td><font color="#00CC99">我的死党</font></td>
+          <td>再牛逼的现在也比不上逗逼的以前</td>
+          <td>和她的那些年</td>
+          <td>1</td>
+          <td>1</td>
+          <td><div class="button-group"> <a class="button border-main" onclick="delete1()">删除</a><a class="button border-main" onclick="pay()">付款</a> </div></td>
+        </tr>
+         <tr>
+          <td>4</td>
+          <td><font color="#00CC99">工作文档</font></td>
+          <td>我是IT民工</td>
+          <td>和她的那些年</td>
+          <td>1</td>
+          <td>1</td>
+          <td><div class="button-group"> <a class="button border-main" onclick="deleteShop()">删除</a><a class="button border-main" onclick="pay()">付款</a> </div></td>
+        </tr>
+    </table>
+  </div>
+</form>
+<script type="text/javascript">
+//请求
+
+
+
+//删除
+function deleteShop(){	
+		
+}
+
+//付款
+function pay(){
+	
+}
+</script>
+</body>
+</html>

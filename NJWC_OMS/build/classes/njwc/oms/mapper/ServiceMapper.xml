@@ -35,8 +35,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </insert>
     
     <!-- 查询我的所有订单 -->
-    <select id="queryMyOrders" parameterType="Integer" resultType="T_order">
-    select * from t_order where user_id=#{user_id}
+    <select id="queryMyOrders"  resultType="T_order">
+    select * from t_order where user_id=#{user_id} and status=#{status}
+    </select>
+    
+    <!-- 根据订单号查条目 -->
+    <select id="queryEntry" parameterType="String" resultType="T_entry">
+    select * from t_entry where order_number=#{order_number}
     </select>
     
     <!-- 改变订单状态 -->
@@ -61,9 +66,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     
     <!-- 插入商品 -->
     <insert id="insertProduct" parameterType="T_product">
-    insert into t_product (product_id,name,price,seller_id)
+    insert into t_product (product_id,name,type,price,seller_id)
     values
-    (#{product_id},#{name},#{price},#{seller_id})
+    (#{product_id},#{name},#{type},#{price},#{seller_id})
     </insert>
     
     <!-- 更新商品信息 -->

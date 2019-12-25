@@ -45,7 +45,7 @@ public interface IService {
 	 * 4.点击付款、确认收货改变订单状态
 	 * 5.点击删除删除订单
 	 */
-	public abstract List<Object> queryMyOrders(Integer user_id);
+	public abstract List<Object> queryMyOrders(Integer user_id,Integer status);
 	
 	//更新订单状态（0：未付款；1：已付款）
 	public abstract boolean changeOrderStatus(String order_number,Integer status);
@@ -80,7 +80,7 @@ public interface IService {
 	 * @param seller_id
 	 * @return
 	 */
-	public abstract boolean insertProduct(Integer product_id,String name,double price,Integer seller_id);
+	public abstract boolean insertProduct(Integer product_id,String name,Integer type,double price,Integer seller_id);
 
 	/**
 	 *  //更改商品信息
