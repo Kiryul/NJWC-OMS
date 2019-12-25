@@ -34,7 +34,7 @@ public interface IService {
 	 * @param user_id,product_id,product_price,product_num
 	 * @return boolean
 	 */
-	public abstract boolean createOrder(Integer user_id,Integer product_id,double product_price,Integer product_num);
+	public abstract boolean createOrder(Integer user_id,Integer product_id,Double product_price,Integer product_num);
 	
 	/*
 	 * //查询我的所有订单

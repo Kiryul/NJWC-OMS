@@ -10,9 +10,94 @@
 <link rel="stylesheet" href="css/admin.css">
 <script src="js/jquery.js"></script>
 <script src="js/pintuer.js"></script>
+<script type="text/javascript">
+function myOrder()
+{	
+	 if (window.XMLHttpRequest) 
+	  {// code for IE7+, Firefox, Chrome, Opera, Safari
+	     xmlhttp=new XMLHttpRequest(); 
+	  } 
+	else {// code for IE6, IE5 
+	   xmlhttp=new ActiveXObject("Microsoft.XMLHTTP"); 
+	  }
+	 xmlhttp.open("get", "queryMyOrders.do?status="+0, true);
+	 xmlhttp.onreadystatechange=function() 
+	 {    
+		 //alert(xmlhttp.readyState)
+		 if (xmlhttp.readyState==4 && xmlhttp.status==200) 
+	     { 
+			json=eval("("+xmlhttp.responseText+")");
+			alert(JSON.stringify(json));
+			// alert(json[0]);
+			// alert(json[0].order.order_number);
+      // alert(json[0].entry.length);
+      // alert(json[0].entry[0].order_number);
+			document.getElementById("viewmyorder").innerHTML=display(json);
+	     } 
+	 }
+	 xmlhttp.send();  
+}
+
+
+function display(json)
+{
+  content="";
+	for(var j=0;j<json.length;j++)
+	{
+    content+="订单号："+json[j].order.order_number+"<br>";
+    content+="创建时间："+json[j].order.create_time+"<br>";
+    content+="状态：未支付";
+		for(var i=0;i<json[j].entry.length;i++)
+		{
+     content+="<table align='center' border='1'>";
+     content+="<tr><th>id</th><th>商品号</th><th>商品价格</th><th>购买数量</th><th>总价</th><th>操作</th></tr>";
+     content+="<tr><td>"+json[j].entry[i].id+"</td>";
+ 	   content+="<td>"+json[j].entry[i].product_id+"</td>";
+     content+="<td>"+json[j].entry[i].product_price+"</td>";
+     content+="<td>"+json[j].entry[i].product_num+"</td>";
+     content+="<td>"+json[j].entry[i].product_num*json[j].entry[i].product_price+"</td>";
+     content+="<td><button onclick='payment(\""+json[j].entry[i].order_number+"\")'>付款</button></td></tr>";
+     content+="</table><br>";
+		}
+
+	}
+
+    return content;
+}
+function payment(order_number)
+{
+	  // if(!confirm("确定删除该订单")) return;
+		 if (window.XMLHttpRequest) 
+		  {// code for IE7+, Firefox, Chrome, Opera, Safari
+		     xmlhttp=new XMLHttpRequest(); 
+		  } 
+		else {// code for IE6, IE5 
+		   xmlhttp=new ActiveXObject("Microsoft.XMLHTTP"); 
+		}
+		xmlhttp.open("get", "changeOrderStatus.do?order_number="+order_number+"&status="+1, true);
+		 xmlhttp.onreadystatechange=function() 
+		 {    
+			 //alert(xmlhttp.readyState)
+			 if (xmlhttp.readyState==4 && xmlhttp.status==200) 
+		     { 
+				res=xmlhttp.responseText;
+				if(res=="true")
+				{
+					alert("支付成功！");
+					//myOrder();
+				}
+				else
+					{
+					alert("操作失败！");
+					}
+		     } 
+		 } 
+	  xmlhttp.send();
+}
+</script>
 </head>
-<body>
-<form method="post" action="" id="listform">
+<body onload="myOrder()">
+<!-- <form method="post" action="" id="listform"> -->
   <div class="panel admin-panel">
     <div class="panel-head"><strong class="icon-reorder"> 产品列表</strong> </div>
     <div class="padding border-bottom">
@@ -22,7 +107,8 @@
           <a href="javascript:void(0)" class="button border-main icon-search" onclick="changesearch()" > 搜索</a></li>
       </ul>
     </div>
-    <table class="table table-hover text-center">
+    <div id="viewmyorder"></div>
+    <!-- <table class="table table-hover text-center">
       <tr>
         <th width="10%">商品ID</th>
         <th>商品名</th>
@@ -68,9 +154,9 @@
           <td>1</td>
           <td><div class="button-group"> <a class="button border-main" onclick="deleteShop()">删除</a><a class="button border-main" onclick="pay()">付款</a> </div></td>
         </tr>
-    </table>
+    </table> -->
   </div>
-</form>
+<!-- </form> -->
 <script type="text/javascript">
 //请求
 

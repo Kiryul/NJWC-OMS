@@ -89,7 +89,7 @@ public class ServiceImpl implements IService
 
 	//创建订单
 	@Override
-	public boolean createOrder(Integer user_id, Integer product_id, double product_price, Integer product_num) {
+	public boolean createOrder(Integer user_id, Integer product_id, Double product_price, Integer product_num) {
 		// TODO Auto-generated method stub
 		String order_number = UUID.randomUUID().toString().replaceAll("-", "");
 		Timestamp create_time= new Timestamp(System.currentTimeMillis());//获取系统当前时间

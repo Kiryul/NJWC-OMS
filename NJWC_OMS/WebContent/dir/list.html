@@ -53,7 +53,7 @@ function display(json)
     return content;
 }
 
-function buyProduct(product_id,price)
+function buyProduct(product_id,product_price)
 {
 	product_num=prompt("请输入购买数量");
 	 if (window.XMLHttpRequest) 
@@ -74,7 +74,7 @@ function buyProduct(product_id,price)
 				if(res=="true")
 				{
 					alert("下单成功！");
-					allProducts();
+					//allProducts();
 				}
 				else
 					{
@@ -83,7 +83,7 @@ function buyProduct(product_id,price)
 		     } 
 		 } 
 	 xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-	 xmlhttp.send("product_id="+product_id+"&price="+price+"&product_num="+product_num);
+	 xmlhttp.send("product_id="+product_id+"&product_price="+product_price+"&product_num="+product_num);
 }
 
 // function myShopping()

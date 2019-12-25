@@ -40,7 +40,7 @@ public class UserController {
 	//´´½¨¶©µ¥
 	@RequestMapping("createOrder.do")
 	@ResponseBody
-	public boolean createOrder(Integer product_id,double product_price,Integer product_num,HttpSession session)
+	public boolean createOrder(Integer product_id,Double product_price,Integer product_num,HttpSession session)
 	{
 		T_user user=(T_user) session.getAttribute("user");
 		return iService.createOrder(user.getId(), product_id, product_price, product_num);
