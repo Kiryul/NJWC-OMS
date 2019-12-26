@@ -36,8 +36,7 @@ function add()
 				if(res=="true")
 				{
 					alert("提交成功！");
-					add();
-					//window.location.href="wenyu.html";
+					window.location.href="wenyu.html";
 				}
 				else
 					{
@@ -56,7 +55,7 @@ function add()
 <div class="panel admin-panel margin-top">
   <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>添加内容</strong></div>
   <div class="body-content">
-    <form method="post" class="form-x" action="">
+    <!-- <form method="post" class="form-x" action=""> -->
       <table class="table table-hover text-center">
       	<tr>
         <th width="10%">商品ID</th>
@@ -72,7 +71,7 @@ function add()
        <div class="field">
             <button class="button bg-main icon-check-square-o" type="submit" onclick="add()">添加</button>
        </div>
-    </form>
+    <!-- </form> -->
   </div>
 </div>
 

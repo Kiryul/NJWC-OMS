@@ -60,5 +60,9 @@ public interface ServiceMapper {
 	public abstract List<Object> queryMyEntry(Integer product_id);
 	//根据商家查询商品id
 	public abstract List<Integer> queryProduct_id(Integer seller_id);
+	
+	public abstract boolean deleteEntry(String order_number);
+
+	public abstract List<Object> serchingProduct(String product_name);
 
 }

@@ -27,7 +27,7 @@ function viewMyEntry()
 		 if (xmlhttp.readyState==4 && xmlhttp.status==200) 
 	     { 
 			json=eval("("+xmlhttp.responseText+")");
-			alert(JSON.stringify(json));
+		//	alert(JSON.stringify(json));
 		// 	var msg = ""; 
 		//   for(var key in json) 
 		//   { 
@@ -51,32 +51,32 @@ function viewMyEntry()
 function display(json)
 {
   content="";
-			  for(var key in json) 
-		  { 
-			  //alert("key:"+key);
-        content+="商品："+key+"<br>";
+  content+="<table class='table table-striped table-hover text-center'>";
+  content+="<tr><th>商品</th><th>id</th><th>商品号</th><th>单价</th><th>数量 </th><th>总价</th><th>订单号</th></tr>";
+	for(var key in json) 
+	{ 
+		//alert("key:"+key);		
+        content+="<tr><td>"+key+"</td>";
       for(var i in json[key])
-			{ 
-        //alert("i:"+i);
-        if(i==null) continue;
-			  content+="<table align='center' border='1'>";
-        content+="<tr><th>id</th><th>商品号</th><th>单价</th><th>数量 </th><th>总价</th><th>订单号</th></tr>";
+		{ 
+        	//alert("i:"+i);
+        	if(i==null) continue;
 				//alert("value:"+json[key][i].id+","+json[key][i].product_id+","+json[key][i].product_price);
- 	      content+="<tr><td>"+json[key][i].id+"</td>";
- 	      content+="<td>"+json[key][i].product_id+"</td>";
-		    content+="<td>"+json[key][i].product_price+"</td>";
-		    content+="<td>"+json[key][i].product_num+"</td>";
-		    content+="<td>"+(json[key][i].product_price*json[key][i].product_num)+"</td>";
-		    content+="<td>"+json[key][i].order_number+"</td></tr>";
-			  }
-			  content+="</table><br>"; 
-		  }
+ 	      		content+="<td>"+json[key][i].id+"</td>";
+ 	      		content+="<td>"+json[key][i].product_id+"</td>";
+		    	content+="<td>"+json[key][i].product_price+"</td>";
+		    	content+="<td>"+json[key][i].product_num+"</td>";
+		    	content+="<td>"+(json[key][i].product_price*json[key][i].product_num)+"</td>";
+		    	content+="<td>"+json[key][i].order_number+"</td></tr>";
+		}
+      
+	}
+	content+="</table><br>"; 
     return content;
 }
 </script>
 </head>
 <body onload="viewMyEntry()">
-<!-- <form method="post" action="" id="listform"> -->
   <div class="panel admin-panel">
     <div class="panel-head"><strong class="icon-reorder"> 产品列表</strong> <a href="" style="float:right; display:none;">添加字段</a></div>
     <div id="viewMyEntry"></div>
@@ -131,17 +131,5 @@ function display(json)
       </tr>
     </table> -->
   </div>
-<!-- </form> -->
-<script type="text/javascript">
-//请求
-
-
-
-
-//发货
-function addShop(){
-	
-}
-</script>
 </body>
 </html>

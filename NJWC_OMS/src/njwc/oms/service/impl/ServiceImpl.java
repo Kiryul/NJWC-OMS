@@ -142,6 +142,7 @@ public class ServiceImpl implements IService
 	@Override
 	public boolean deleteOrder(String order_number) {
 		// TODO Auto-generated method stub
+		serviceMapper.deleteEntry(order_number);
 		return serviceMapper.deleteOrder(order_number);
 	}
 
@@ -196,6 +197,12 @@ public class ServiceImpl implements IService
 			result.put(product_id, list);
 		}
 		return result;
+	}
+	
+	@Override
+	public List<Object> searchingProduct(String product_name) {
+		// TODO Auto-generated method stub
+		return serviceMapper.serchingProduct(product_name);
 	}
 
 }

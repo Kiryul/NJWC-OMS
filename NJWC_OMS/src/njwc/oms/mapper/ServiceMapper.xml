@@ -86,4 +86,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     select product_id from t_product where seller_id=#{seller_id}
     </select>
 
+    <delete id="deleteEntry" parameterType="String">
+    delete from t_entry where order_number=#{order_number}
+    </delete>
+
+    <select id="serchingProduct" parameterType="String" resultType="njwc.oms.po.T_product">
+        select * from t_product where name like CONCAT('%',#{product_name},'%');
+    </select>
 </mapper>

@@ -71,5 +71,11 @@ public class UserController {
 		return iService.deleteOrder(order_number);
 	}
 	
+	@RequestMapping("serchingProduct.do")
+	@ResponseBody
+	public List<Object> searchingProduct(String product_name) 
+	{
+		return iService.searchingProduct(product_name);
+	}
 	
 }

@@ -11,7 +11,7 @@
     <script src="js/jquery.js"></script>
     <script src="js/pintuer.js"></script>
 <script type="text/javascript">
-		//	 setTimeout(function(){alert("Hello")},1000);
+
      function login()
     {
     	 if (window.XMLHttpRequest) 
@@ -21,27 +21,26 @@
    	else {// code for IE6, IE5 
    	   xmlhttp=new ActiveXObject("Microsoft.XMLHTTP"); 
 		 } 
-
-					 radio=document.getElementsByName("sign");
+			 radio=document.getElementsByName("sign");
 			 //alert(radio.length);
 			 for(var i=0;i<radio.length;i++)
 			 {
 				 if(radio[i].checked==true) sign=radio[i].value;
 			 }
+
+			 //alert(sign);
     	 account=document.getElementById("account").value;
 			 password=document.getElementById("password").value;
-			 //alert(sign);
-
 			 if(sign==0)
 			 {
-			 xmlhttp.open("POST","login0.do",false);
+			 xmlhttp.open("POST","login0.do",true);
 			 
 			     	 xmlhttp.onreadystatechange=function()
     	 {
     		 if (xmlhttp.readyState==4 && xmlhttp.status==200) 
     	     { 
     			json=eval("("+xmlhttp.responseText+")");
-    			alert(JSON.stringify(json));
+    			//alert(JSON.stringify(json));
     			if(json.message=="200")
     				window.location.href="index0.html";
     			else
@@ -53,14 +52,14 @@
     	     }
     	 }
 			 }else{
-				xmlhttp.open("POST","login1.do",false);
+				xmlhttp.open("POST","login1.do",true);
 
 				    	 xmlhttp.onreadystatechange=function()
     	 {
     		 if (xmlhttp.readyState==4 && xmlhttp.status==200) 
     	     { 
     			json=eval("("+xmlhttp.responseText+")");
-    			alert(JSON.stringify(json));
+    			//alert(JSON.stringify(json));
     			if(json.message=="200")
     				window.location.href="index1.html";
     			else
@@ -86,7 +85,7 @@
             <div style="height:150px;"></div>
             <div class="media media-y margin-big-bottom">           
             </div>         
-            <form>
+            <div>
             <div class="panel loginbox">
                 <div class="text-center margin-big padding-big-top"><h1>南京文创订单管理系统</h1></div>
                 <div class="panel-body" style="padding:30px; padding-bottom:10px; padding-top:10px;">
@@ -111,7 +110,7 @@
                 	<input type="submit" class="button button-block bg-main text-big input-big" value="登录"  onclick="login()">
                 </div>
             </div>
-            </form>          
+		</div>          
         </div>
     </div>
 </div>
